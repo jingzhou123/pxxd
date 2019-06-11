@@ -26,11 +26,7 @@ export class App {
                 const cmd: string = (answers as any).cmd;
                 const scriptKeyIndex = cmd.lastIndexOf(':')
                 const script = cmd.slice(0, scriptKeyIndex)
-                const scriptProcess = exec(`npm run ${script}`, (err, stdo, stdi) => {
-                    if (err) {
-                        console.error(err);
-                    }
-                })
+                const scriptProcess = exec(`npm run ${script}`)
                 if (scriptProcess.stdout) {
                     scriptProcess.stdout.on('data', (chunk) => {
                         console.log(chunk);
