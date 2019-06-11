@@ -23,7 +23,9 @@ export class App {
                     choices
                 }
             ]).then(answers => {
-                const script = (answers as any).cmd.split(':')[0]
+                const cmd: string = (answers as any).cmd;
+                const scriptKeyIndex = cmd.lastIndexOf(':')
+                const script = cmd.slice(0, scriptKeyIndex)
                 exec(`npm run ${script}`, (err, stdo, stdi) => {
                     if (err) {
                         console.error(err);
