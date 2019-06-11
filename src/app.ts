@@ -26,13 +26,16 @@ export class App {
                 const cmd: string = (answers as any).cmd;
                 const scriptKeyIndex = cmd.lastIndexOf(':')
                 const script = cmd.slice(0, scriptKeyIndex)
-                exec(`npm run ${script}`, (err, stdo, stdi) => {
+                const scriptProcess = exec(`npm run ${script}`, (err, stdo, stdi) => {
                     if (err) {
                         console.error(err);
-                    } else {
-                        console.log(stdo);
                     }
                 })
+                if (scriptProcess.stdout) {
+                    scriptProcess.stdout.on('data', (chunk) => {
+                        console.log(chunk);
+                    })
+                }
             })
         } else {
             console.log('cannot find scripts in package.json');
