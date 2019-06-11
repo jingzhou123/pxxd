@@ -36,6 +36,11 @@ export class App {
                         console.log(chunk);
                     })
                 }
+                if (scriptProcess.stderr) {
+                    scriptProcess.stderr.on('data', (chunk) => {
+                        console.error(chunk);
+                    })
+                }
             })
         } else {
             console.log('cannot find scripts in package.json');
