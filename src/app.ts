@@ -14,7 +14,7 @@ export class App {
         if (packageJson.scripts) {
             const cmdKeys = _.keys(packageJson.scripts)
             const cmdVals = _.values(packageJson.scripts)
-            const choices = cmdKeys.map((k, i) => `${k}:${cmdVals[i]}` )
+            const choices = cmdKeys.map((k, i) => `"${k}" ${cmdVals[i]}` )
             inquirer.prompt([
                 {
                     type: 'list',
