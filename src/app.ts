@@ -28,14 +28,10 @@ export class App {
                 const script = cmd.slice(0, scriptKeyIndex)
                 const scriptProcess = exec(`npm run ${script}`)
                 if (scriptProcess.stdout) {
-                    scriptProcess.stdout.on('data', (chunk) => {
-                        console.log(chunk);
-                    })
+                    scriptProcess.stdout.pipe(process.stdout)
                 }
                 if (scriptProcess.stderr) {
-                    scriptProcess.stderr.on('data', (chunk) => {
-                        console.error(chunk);
-                    })
+                    scriptProcess.stderr.pipe(process.stderr)
                 }
             })
         } else {
