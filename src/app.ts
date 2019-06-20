@@ -2,7 +2,7 @@ import process from 'process'
 import path from 'path'
 import _ from 'lodash'
 import inquirer from 'inquirer'
-import { exec } from 'child_process'
+import { exec, spawn } from 'child_process'
 
 export class App {
     constructor() {
@@ -24,9 +24,9 @@ export class App {
                 }
             ]).then(answers => {
                 const cmd: string = (answers as any).cmd;
-                const scriptKeyIndex = cmd.indexOf(' ')
-                const script = cmd.slice(0, scriptKeyIndex)
-                const scriptProcess = exec(`npm run "${script}"`)
+                const scriptKeyIndex = cmd.indexOf('"', 1)
+                const script = cmd.slice(1, scriptKeyIndex)
+                const scriptProcess = spawn('npm', ['run', `${script}`])
                 if (scriptProcess.stdout) {
                     scriptProcess.stdout.pipe(process.stdout)
                 }
