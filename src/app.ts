@@ -29,12 +29,9 @@ export class App {
                 const scriptProcess = spawn('npm', ['run', `${script}`], {
                     stdio: 'inherit'
                 })
-                if (scriptProcess.stdout) {
-                    scriptProcess.stdout.pipe(process.stdout)
-                }
-                if (scriptProcess.stderr) {
-                    scriptProcess.stderr.pipe(process.stderr)
-                }
+                scriptProcess.on('exit', (code, signal) => {
+                    console.log('script exit code:', code, 'signal:', signal);
+                })
             })
         } else {
             console.log('cannot find scripts in package.json');
