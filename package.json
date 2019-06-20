@@ -1,6 +1,6 @@
 {
   "name": "pxxd",
-  "version": "0.1.0-alpha.11",
+  "version": "1.0.0",
   "main": "./bin/index.js",
   "license": "MIT",
   "dependencies": {
