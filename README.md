@@ -1,4 +1,1 @@
-# Usage
-```
-xpp
-```
+read package.json scripts
