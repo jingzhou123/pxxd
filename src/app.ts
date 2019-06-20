@@ -24,9 +24,9 @@ export class App {
                 }
             ]).then(answers => {
                 const cmd: string = (answers as any).cmd;
-                const scriptKeyIndex = cmd.lastIndexOf(':')
+                const scriptKeyIndex = cmd.indexOf(' ')
                 const script = cmd.slice(0, scriptKeyIndex)
-                const scriptProcess = exec(`npm run ${script}`)
+                const scriptProcess = exec(`npm run "${script}"`)
                 if (scriptProcess.stdout) {
                     scriptProcess.stdout.pipe(process.stdout)
                 }
