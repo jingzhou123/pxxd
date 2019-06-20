@@ -26,7 +26,9 @@ export class App {
                 const cmd: string = (answers as any).cmd;
                 const scriptKeyIndex = cmd.indexOf('"', 1)
                 const script = cmd.slice(1, scriptKeyIndex)
-                const scriptProcess = spawn('npm', ['run', `${script}`])
+                const scriptProcess = spawn('npm', ['run', `${script}`], {
+                    stdio: 'inherit'
+                })
                 if (scriptProcess.stdout) {
                     scriptProcess.stdout.pipe(process.stdout)
                 }
