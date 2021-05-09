@@ -7,7 +7,7 @@
     "@types/inquirer": "^6.0.3",
     "commander": "^2.19.0",
     "inquirer": "^6.4.0",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.21"
   },
   "bin": {
     "pxxd": "bin/index.js"
